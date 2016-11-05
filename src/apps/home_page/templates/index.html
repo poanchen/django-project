@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+  yo
+{% endblock title %}
+
+{% comment %}
+{% block header %}
+  <div class="container">
+    uncomment me to see that I am overwriting the header block in base.html
+  </div>
+{% endblock header %}
+{% endcomment %}
+
+{% block content %}
+  <div class="container">
+    Hello World<br>
+    {{ name }}
+  </div>
+  {% include "include/sidebar.html" %}
+{% endblock content %}

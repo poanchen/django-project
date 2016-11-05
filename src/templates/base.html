@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html prefix="og: http://ogp.me/ns#">
+
+  <head>
+    <!-- we are using UTF-8 encoding -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- all the og metadata -->
+    <!-- for ref, go to http://ogp.me/ -->
+    <!-- good for social media sharing and SEO -->
+    <meta property="og:title" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- metadata for this page -->
+    <!-- good for SEO, also, it gives user information about the page on search engine -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- icon for tab on web browser -->
+    <link rel="icon" type="image/jpg" href="">
+
+    <!-- include css here -->
+    {% block css %}
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {% endblock css %}
+  </head>
+
+  <body>
+    {% block header %}
+      {% include "include/header.html" %}
+    {% endblock header %}
+    
+    {% block content %}{% endblock content %}
+    
+    {% block footer %}
+      {% include "include/footer.html" %}
+    {% endblock footer %}
+  </body>
+
+  <!-- include js here -->
+  {% block js %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
+  {% endblock js %}
+
+</html>
