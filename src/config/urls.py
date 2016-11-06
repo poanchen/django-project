@@ -17,6 +17,17 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('apps.home_page.urls')),
-    url(r'^admin/', admin.site.urls),
+  # http://127.0.0.1:8000/admin
+  # http://127.0.0.1:8000/admin/
+  url(r'^admin/?', admin.site.urls),
+  # http://127.0.0.1:8000/user
+  # http://127.0.0.1:8000/user/
+  # http://127.0.0.1:8000/user/login
+  # http://127.0.0.1:8000/user/login/
+  # http://127.0.0.1:8000/user/register
+  # http://127.0.0.1:8000/user/register/
+  url(r'^user', include('apps.user_management.urls')),
+  # http://127.0.0.1:8000
+  # http://127.0.0.1:8000/
+  url(r'^/?', include('apps.home_page.urls')),
 ]
