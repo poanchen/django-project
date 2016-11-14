@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+  yo
+{% endblock title %}
+
+{% comment %}
+{% block header %}
+  <div class="container">
+    uncomment me to see that I am overwriting the header block in base.html
+  </div>
+{% endblock header %}
+{% endcomment %}
+
+{% block content %}
+  <div class="container">
+    {{ person.first_name }} {{ person.last_name }}<br>
+    <img src="https://s3-us-west-2.amazonaws.com/jenrenalcare-assets/{{ person.user_id }}/{{ person.user_id }}.jpg"><br>
+    {{ person.education }}<br>
+    {{ person.current_location }}<br>
+    {{ person.hr_rate }}<br>
+    <br>
+  </div>
+  {% include "include/sidebar.html" %}
+{% endblock content %}

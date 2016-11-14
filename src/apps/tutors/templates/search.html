@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+  yo
+{% endblock title %}
+
+{% comment %}
+{% block header %}
+  <div class="container">
+    uncomment me to see that I am overwriting the header block in base.html
+  </div>
+{% endblock header %}
+{% endcomment %}
+
+{% block content %}
+  <div class="container">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Price range
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        {% for price in prices %}
+          {% if price != 'No limit' %}
+            <li><a>below {{ price }}</a></li>
+          {% else %}
+            <li><a>{{ price }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Location
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        {% for location in locations %}
+          <li><a>{{ location }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <br>
+  </div>
+  <div class="container">
+    {% for tutor in tutors %}
+      {{ tutor.first_name }} {{ tutor.last_name }}<br>
+      <a href="/user/{{ tutor.user_id }}/{{ tutor.first_name }}-{{ tutor.last_name }}">
+        <img src="https://s3-us-west-2.amazonaws.com/jenrenalcare-assets/{{ tutor.user_id }}/{{ tutor.user_id }}.jpg"><br>
+      </a>
+      {{ tutor.education }}<br>
+      {{ tutor.current_location }}<br>
+      {{ tutor.hr_rate }}<br>
+      <br>
+    {% endfor %}
+  </div>
+  {% include "include/sidebar.html" %}
+{% endblock content %}
+
+{% block js %}
+  {{ block.super }}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $.urlParam = function (name) {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null){
+           return '';
+        }else{
+           return results[1];
+        }
+      }
+      $.getNumber = function (text) {
+        var result = text.split(' ')[1];
+        return isNaN(parseInt(result)) ? '' : result;
+      }
+      $(".dropdown-menu li a").click(function() {
+        var text = $(this).text();
+        var params = '?';
+        var m_p = $.urlParam('m_p');
+        var l = $.urlParam('l');
+
+        if(new RegExp('^below', 'i').test(text)) {
+          m_p = $.getNumber(text);
+        }else{
+          if(text == 'Not specified') {
+            l = '';
+          }else if(text == 'No limit') {
+            m_p = '';
+          }else{
+            l = text;
+          }
+        }
+        m_p = m_p == '' ? '' : '&m_p=' + m_p;
+        l = l == '' ? '' : '&l=' + l;
+        document.location.href = params + m_p + l;
+      });
+    });
+  </script>
+{% endblock js %}

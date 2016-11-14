@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
   'apps.home_page',
   'apps.user_management',
+  'apps.tutors',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
